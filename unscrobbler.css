@@ -1,0 +1,8 @@
+.chartlist .chartlist-checkbox {
+  width: 10px;
+  padding-left: 12px;
+}
+
+.chartlist.chartlist--compact-image .chartlist-loved {
+  padding: 0;
+}

@@ -1,3 +1,4 @@
+// Make the extension icon turn on when visiting Last.FM
 chrome.runtime.onInstalled.addListener(function() {
   chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
     chrome.declarativeContent.onPageChanged.addRules([

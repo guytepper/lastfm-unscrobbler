@@ -4,5 +4,6 @@
 }
 
 .chartlist.chartlist--compact-image .chartlist-loved {
-  padding: 0;
+  padding-top: 6px;
+  padding-left: 6px !important;
 }

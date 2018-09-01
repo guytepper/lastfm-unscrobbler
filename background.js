@@ -4,7 +4,7 @@ chrome.runtime.onInstalled.addListener(function() {
       {
         conditions: [
           new chrome.declarativeContent.PageStateMatcher({
-            pageUrl: { hostEquals: "www.last.fm" }
+            pageUrl: { hostEquals: 'www.last.fm' }
           })
         ],
         actions: [new chrome.declarativeContent.ShowPageAction()]

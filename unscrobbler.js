@@ -2,7 +2,7 @@
 const scrobbleRows = document.querySelectorAll('.js-focus-controls-container');
 const moreMenu = document.querySelectorAll('.chartlist-more-menu');
 
-// Add a checkbox for each track (scrobble) row.
+// Add a checkbox for each scrobble row.
 scrobbleRows.forEach(row => {
   const loveTableData = row.querySelector('.chartlist-loved');
 

@@ -3,7 +3,7 @@
   "version": "1.0",
   "description": "Delete multiple scrobbles from your Last.FM profile.",
   "manifest_version": 2,
-  "permissions": ["activeTab", "declarativeContent", "storage"],
+  "permissions": ["activeTab", "declarativeContent"],
   "background": {
     "scripts": ["background.js"],
     "persistent": false

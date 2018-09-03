@@ -13,3 +13,8 @@ chrome.runtime.onInstalled.addListener(function() {
     ]);
   });
 });
+
+chrome.browserAction.onClicked.addListener(activeTab => {
+  chrome.tabs.executeScript(null, { file: 'unscrobbler.js' });
+  chrome.tabs.insertCSS(null, { file: 'unscrobbler.css' });
+});

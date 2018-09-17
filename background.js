@@ -1,6 +1,6 @@
 // Make the extension icon turn on when visiting Last.FM
-chrome.runtime.onInstalled.addListener(function() {
-  chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
+chrome.runtime.onInstalled.addListener(() => {
+  chrome.declarativeContent.onPageChanged.removeRules(undefined, () => {
     chrome.declarativeContent.onPageChanged.addRules([
       {
         conditions: [
@@ -14,7 +14,7 @@ chrome.runtime.onInstalled.addListener(function() {
   });
 });
 
-chrome.pageAction.onClicked.addListener(activeTab => {
+chrome.pageAction.onClicked.addListener(() => {
   chrome.tabs.executeScript(null, { file: 'unscrobbler.js' });
   chrome.tabs.insertCSS(null, { file: 'unscrobbler.css' });
 });

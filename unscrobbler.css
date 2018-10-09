@@ -7,3 +7,8 @@
   padding-top: 6px;
   padding-left: 6px !important;
 }
+
+.date-heading {
+  display: flex;
+  justify-content: space-between;
+}

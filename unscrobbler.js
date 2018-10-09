@@ -1,7 +1,7 @@
 // Get all scrobble rows & menu elements, in order to modify them.
 const scrobbleRows = document.querySelectorAll('.js-focus-controls-container');
 const moreMenu = document.querySelectorAll('.chartlist-more-menu');
-const libraryTracklistSection = document.querySelectorAll('.tracklist-section')[0];
+const libraryTracklistSection = document.querySelectorAll('.tracklist-section');
 
 // Add a checkbox for each scrobble row.
 scrobbleRows.forEach(row => {
@@ -33,13 +33,16 @@ moreMenu.forEach(menu => {
 });
 
 // If the user is on library tracklist page, add 'Select All' button.
-if (libraryTracklistSection) {
-  const dateTitles = document.querySelectorAll('.date-heading');
-  dateTitles.forEach(title => {
-    const selectAllBtn = document.createElement('button');
-    selectAllBtn.className = 'btn-secondary btn-sm';
-    selectAllBtn.textContent = 'Select All';
-    title.appendChild(selectAllBtn);
+if (libraryTracklistSection[0]) {
+  libraryTracklistSection.forEach(section => {
+    const dateTitles = section.querySelectorAll('.date-heading');
+    dateTitles.forEach(title => {
+      const selectAllBtn = document.createElement('button');
+      selectAllBtn.className = 'btn-secondary btn-sm';
+      selectAllBtn.textContent = 'Select All';
+      selectAllBtn.onclick = selectAllTracks.bind(this, section);
+      title.appendChild(selectAllBtn);
+    });
   });
 }
 
@@ -60,4 +63,10 @@ function deleteScrobbles() {
     const deleteBtn = scrobbleRow.querySelector('[data-ajax-form-sets-state="deleted"]');
     deleteBtn.click();
   });
+}
+
+// Select all tracks for the provided section
+function selectAllTracks(section) {
+  const checkboxes = section.querySelectorAll('input[name="unscrobble-checkbox"]');
+  checkboxes.forEach(checkbox => (checkbox.checked = true));
 }

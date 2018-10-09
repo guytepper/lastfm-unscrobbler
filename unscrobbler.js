@@ -1,6 +1,7 @@
 // Get all scrobble rows & menu elements, in order to modify them.
 const scrobbleRows = document.querySelectorAll('.js-focus-controls-container');
 const moreMenu = document.querySelectorAll('.chartlist-more-menu');
+const libraryTracklistSection = document.querySelectorAll('.tracklist-section')[0];
 
 // Add a checkbox for each scrobble row.
 scrobbleRows.forEach(row => {
@@ -30,6 +31,17 @@ moreMenu.forEach(menu => {
   listItem.appendChild(deleteButton);
   menu.appendChild(listItem);
 });
+
+// If the user is on library tracklist page, add 'Select All' button.
+if (libraryTracklistSection) {
+  const dateTitles = document.querySelectorAll('.date-heading');
+  dateTitles.forEach(title => {
+    const selectAllBtn = document.createElement('button');
+    selectAllBtn.className = 'btn-secondary btn-sm';
+    selectAllBtn.textContent = 'Select All';
+    title.appendChild(selectAllBtn);
+  });
+}
 
 // Delete all the checked scrobble rows.
 function deleteScrobbles() {

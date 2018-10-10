@@ -1,6 +1,7 @@
 // Get all scrobble rows & menu elements, in order to modify them.
 const scrobbleRows = document.querySelectorAll('.js-focus-controls-container');
 const moreMenu = document.querySelectorAll('.chartlist-more-menu');
+const recentTrackSection = document.querySelector('#recent-tracks-section');
 const libraryTracklistSection = document.querySelectorAll('.tracklist-section');
 
 // Add a checkbox for each scrobble row.
@@ -31,6 +32,16 @@ moreMenu.forEach(menu => {
   listItem.appendChild(deleteButton);
   menu.appendChild(listItem);
 });
+
+// If the user is on their profile page, add 'Select All' button on the recent tracks section.
+if (recentTrackSection) {
+  const title = recentTrackSection.querySelector('h2');
+  const selectAllBtn = document.createElement('button');
+  selectAllBtn.className = 'btn-secondary btn-sm';
+  selectAllBtn.textContent = 'Select All';
+  selectAllBtn.onclick = selectAllTracks.bind(this, recentTrackSection);
+  title.appendChild(selectAllBtn);
+}
 
 // If the user is on library tracklist page, add 'Select All' button.
 if (libraryTracklistSection[0]) {

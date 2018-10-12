@@ -12,3 +12,10 @@
   display: flex;
   justify-content: space-between;
 }
+
+#recent-tracks-section h2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 26px;
+}

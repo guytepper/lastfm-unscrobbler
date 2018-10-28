@@ -51,7 +51,10 @@ if (libraryTracklistSection[0]) {
       const selectAllBtn = document.createElement('button');
       selectAllBtn.className = 'btn-secondary btn-sm';
       selectAllBtn.textContent = 'Select All';
-      selectAllBtn.onclick = selectAllTracks.bind(this, section);
+      selectAllBtn.onclick = function() {
+        selectAllTracks(section);
+        this.onclick = deselectAllTracks.bind(this, section);
+      };
       title.appendChild(selectAllBtn);
     });
   });

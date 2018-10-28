@@ -81,3 +81,9 @@ function selectAllTracks(section) {
   const checkboxes = section.querySelectorAll('input[name="unscrobble-checkbox"]');
   checkboxes.forEach(checkbox => (checkbox.checked = true));
 }
+
+// Deselect all tracks for the provided section
+function deselectAllTracks(section) {
+  const checkboxes = section.querySelectorAll('input[name="unscrobble-checkbox"]');
+  checkboxes.forEach(checkbox => (checkbox.checked = false));
+}

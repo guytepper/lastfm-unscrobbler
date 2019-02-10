@@ -1,4 +1,4 @@
-// Get all scrobble rows & menu elements, in order to modify them.
+// Get all scrobble rows & menu elements in order to modify them.
 const scrobbleRows = document.querySelectorAll('.js-focus-controls-container');
 const moreMenu = document.querySelectorAll('.chartlist-more-menu');
 const recentTrackSection = document.querySelector('#recent-tracks-section');
@@ -33,13 +33,28 @@ moreMenu.forEach(menu => {
   menu.appendChild(listItem);
 });
 
+// Track the state of the 'Select All' button.
+let status = 'select';
+// Alternate between the select & deselect methods.
+function selectAllHandler(button, section) {
+  if (status === 'select') {
+    selectAllTracks(section);
+    status = 'deselect';
+    button.innerText = 'Deselect All';
+  } else if (status === 'deselect') {
+    deselectAllTracks(section);
+    status = 'select';
+    button.innerText = 'Select All';
+  }
+}
+
 // If the user is on their profile page, add 'Select All' button on the recent tracks section.
 if (recentTrackSection) {
   const title = recentTrackSection.querySelector('h2');
   const selectAllBtn = document.createElement('button');
   selectAllBtn.className = 'btn-secondary btn-sm';
   selectAllBtn.textContent = 'Select All';
-  selectAllBtn.onclick = selectAllTracks.bind(this, recentTrackSection);
+  selectAllBtn.onclick = () => selectAllHandler(selectAllBtn, recentTrackSection);
   title.appendChild(selectAllBtn);
 }
 
@@ -51,10 +66,7 @@ if (libraryTracklistSection[0]) {
       const selectAllBtn = document.createElement('button');
       selectAllBtn.className = 'btn-secondary btn-sm';
       selectAllBtn.textContent = 'Select All';
-      selectAllBtn.onclick = function() {
-        selectAllTracks(section);
-        this.onclick = deselectAllTracks.bind(this, section);
-      };
+      selectAllBtn.onclick = () => selectAllHandler(selectAllBtn, section);
       title.appendChild(selectAllBtn);
     });
   });
@@ -83,6 +95,7 @@ function deleteScrobbles() {
 function selectAllTracks(section) {
   const checkboxes = section.querySelectorAll('input[name="unscrobble-checkbox"]');
   checkboxes.forEach(checkbox => (checkbox.checked = true));
+  // return deselectAllTracks(section);
 }
 
 // Deselect all tracks for the provided section

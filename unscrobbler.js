@@ -1,14 +1,18 @@
-// Get all scrobble rows & menu elements, in order to modify them.
+// Get all scrobble rows & menu elements in order to modify them.
 const scrobbleRows = document.querySelectorAll('.js-focus-controls-container');
 const moreMenu = document.querySelectorAll('.chartlist-more-menu');
 const recentTrackSection = document.querySelector('#recent-tracks-section');
 const libraryTracklistSection = document.querySelectorAll('.tracklist-section');
 
-// Add a checkbox for each scrobble row.
+/**
+ * Add a checkbox to each scrobble row that'll allow it's selection for deletion.
+ * The scrobbles are contained inside table rows, so we'll have to create a new
+ * table data element for each checkbox and append it to the scrobble row.
+ */
 scrobbleRows.forEach(row => {
   const loveTableData = row.querySelector('.chartlist-loved');
 
-  // Create the checkbox container, which will be appended to the table row.
+  // Create the checkbox container, which will be appended to the scrobble row.
   const checkboxTableData = document.createElement('td');
   checkboxTableData.className = 'chartlist-checkbox';
 
@@ -33,42 +37,60 @@ moreMenu.forEach(menu => {
   menu.appendChild(listItem);
 });
 
-// If the user is on their profile page, add 'Select All' button on the recent tracks section.
-if (recentTrackSection) {
-  const title = recentTrackSection.querySelector('h2');
+// Track the state of the 'Select All' button.
+let status = 'select';
+// Alternate between the select & deselect tracks methods.
+function selectAllHandler(button, section) {
+  if (status === 'select') {
+    selectAllTracks(section);
+    status = 'deselect';
+    button.innerText = 'Deselect All';
+  } else if (status === 'deselect') {
+    deselectAllTracks(section);
+    status = 'select';
+    button.innerText = 'Select All';
+  }
+}
+
+function createSelectAllButton(section) {
   const selectAllBtn = document.createElement('button');
   selectAllBtn.className = 'btn-secondary btn-sm';
   selectAllBtn.textContent = 'Select All';
-  selectAllBtn.onclick = selectAllTracks.bind(this, recentTrackSection);
+  selectAllBtn.onclick = () => selectAllHandler(selectAllBtn, section);
+  return selectAllBtn;
+}
+
+// If the user is on their profile page, add 'Select All' button on the recent tracks section.
+if (recentTrackSection) {
+  const title = recentTrackSection.querySelector('h2');
+  const selectAllBtn = createSelectAllButton(recentTrackSection);
   title.appendChild(selectAllBtn);
 }
 
-// If the user is on library tracklist page, add 'Select All' button.
+// If the user is on library tracklist page, add 'Select All' button to each date section.
 if (libraryTracklistSection[0]) {
   libraryTracklistSection.forEach(section => {
+    // Add the button to each date on the section.
     const dateTitles = section.querySelectorAll('.date-heading');
     dateTitles.forEach(title => {
-      const selectAllBtn = document.createElement('button');
-      selectAllBtn.className = 'btn-secondary btn-sm';
-      selectAllBtn.textContent = 'Select All';
-      selectAllBtn.onclick = selectAllTracks.bind(this, section);
+      const selectAllBtn = createSelectAllButton(section);
       title.appendChild(selectAllBtn);
     });
   });
 }
 
-// Delete all the checked scrobble rows.
+// Delete the checked scrobble rows.
 function deleteScrobbles() {
   const checkboxes = document.getElementsByName('unscrobble-checkbox');
 
-  // Convert NodeList to an array.
+  // Convert the checkbox NodeList to an array.
   const checkboxesArr = Array.from(checkboxes);
 
-  // Create a new array that contains only checked checkboxes.
+  // Create a new array that contains only the checked checkboxes.
   const checkedScrobbles = checkboxesArr.filter(node => node.checked);
 
   // Delete the selected scrobbles.
-  // This is done by clicking on every 'Delete scrobble' button that it's row has been checked.
+  // This is done by manually clicking on every 'Delete scrobble' button that it's scrobble has been checked.
   checkedScrobbles.forEach(checkbox => {
     const scrobbleRow = checkbox.parentNode.parentNode;
     const deleteBtn = scrobbleRow.querySelector('[data-ajax-form-sets-state="deleted"]');
@@ -80,4 +102,11 @@ function deleteScrobbles() {
 function selectAllTracks(section) {
   const checkboxes = section.querySelectorAll('input[name="unscrobble-checkbox"]');
   checkboxes.forEach(checkbox => (checkbox.checked = true));
+  // return deselectAllTracks(section);
+}
+
+// Deselect all tracks for the provided section
+function deselectAllTracks(section) {
+  const checkboxes = section.querySelectorAll('input[name="unscrobble-checkbox"]');
+  checkboxes.forEach(checkbox => (checkbox.checked = false));
 }

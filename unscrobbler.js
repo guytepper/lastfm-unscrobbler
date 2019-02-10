@@ -5,7 +5,7 @@ const recentTrackSection = document.querySelector('#recent-tracks-section');
 const libraryTracklistSection = document.querySelectorAll('.tracklist-section');
 
 /**
- * Add a checkbox for each scrobble row that will allow to select the track for deletion.
+ * Add a checkbox to each scrobble row that'll allow it's selection for deletion.
  * The scrobbles are contained inside table rows, so we'll have to create a new
  * table data element for each checkbox and append it to the scrobble row.
  */
@@ -79,7 +79,7 @@ if (libraryTracklistSection[0]) {
   });
 }
 
-// Delete all the checked scrobble rows.
+// Delete the checked scrobble rows.
 function deleteScrobbles() {
   const checkboxes = document.getElementsByName('unscrobble-checkbox');
 

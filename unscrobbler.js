@@ -52,25 +52,28 @@ function selectAllHandler(button, section) {
   }
 }
 
-// If the user is on their profile page, add 'Select All' button on the recent tracks section.
-if (recentTrackSection) {
-  const title = recentTrackSection.querySelector('h2');
+function createSelectAllButton(section) {
   const selectAllBtn = document.createElement('button');
   selectAllBtn.className = 'btn-secondary btn-sm';
   selectAllBtn.textContent = 'Select All';
-  selectAllBtn.onclick = () => selectAllHandler(selectAllBtn, recentTrackSection);
+  selectAllBtn.onclick = () => selectAllHandler(selectAllBtn, section);
+  return selectAllBtn;
+}
+
+// If the user is on their profile page, add 'Select All' button on the recent tracks section.
+if (recentTrackSection) {
+  const title = recentTrackSection.querySelector('h2');
+  const selectAllBtn = createSelectAllButton(recentTrackSection);
   title.appendChild(selectAllBtn);
 }
 
-// If the user is on library tracklist page, add 'Select All' button.
+// If the user is on library tracklist page, add 'Select All' button to each date section.
 if (libraryTracklistSection[0]) {
   libraryTracklistSection.forEach(section => {
+    // Add the button to each date on the section.
     const dateTitles = section.querySelectorAll('.date-heading');
     dateTitles.forEach(title => {
-      const selectAllBtn = document.createElement('button');
-      selectAllBtn.className = 'btn-secondary btn-sm';
-      selectAllBtn.textContent = 'Select All';
-      selectAllBtn.onclick = () => selectAllHandler(selectAllBtn, section);
+      const selectAllBtn = createSelectAllButton(section);
       title.appendChild(selectAllBtn);
     });
   });

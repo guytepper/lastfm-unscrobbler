@@ -4,11 +4,15 @@ const moreMenu = document.querySelectorAll('.chartlist-more-menu');
 const recentTrackSection = document.querySelector('#recent-tracks-section');
 const libraryTracklistSection = document.querySelectorAll('.tracklist-section');
 
-// Add a checkbox for each scrobble row.
+/**
+ * Add a checkbox for each scrobble row that will allow to select the track for deletion.
+ * The scrobbles are contained inside table rows, so we'll have to create a new
+ * table data element for each checkbox and append it to the scrobble row.
+ */
 scrobbleRows.forEach(row => {
   const loveTableData = row.querySelector('.chartlist-loved');
 
-  // Create the checkbox container, which will be appended to the table row.
+  // Create the checkbox container, which will be appended to the scrobble row.
   const checkboxTableData = document.createElement('td');
   checkboxTableData.className = 'chartlist-checkbox';
 

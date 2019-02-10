@@ -39,7 +39,7 @@ moreMenu.forEach(menu => {
 
 // Track the state of the 'Select All' button.
 let status = 'select';
-// Alternate between the select & deselect methods.
+// Alternate between the select & deselect tracks methods.
 function selectAllHandler(button, section) {
   if (status === 'select') {
     selectAllTracks(section);
@@ -83,14 +83,14 @@ if (libraryTracklistSection[0]) {
 function deleteScrobbles() {
   const checkboxes = document.getElementsByName('unscrobble-checkbox');
 
-  // Convert NodeList to an array.
+  // Convert the checkbox NodeList to an array.
   const checkboxesArr = Array.from(checkboxes);
 
-  // Create a new array that contains only checked checkboxes.
+  // Create a new array that contains only the checked checkboxes.
   const checkedScrobbles = checkboxesArr.filter(node => node.checked);
 
   // Delete the selected scrobbles.
-  // This is done by clicking on every 'Delete scrobble' button that it's row has been checked.
+  // This is done by manually clicking on every 'Delete scrobble' button that it's scrobble has been checked.
   checkedScrobbles.forEach(checkbox => {
     const scrobbleRow = checkbox.parentNode.parentNode;
     const deleteBtn = scrobbleRow.querySelector('[data-ajax-form-sets-state="deleted"]');

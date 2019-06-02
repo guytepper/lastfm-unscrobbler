@@ -19,3 +19,16 @@
   align-items: center;
   padding-right: 26px;
 }
+
+.new-design .chartlist-checkbox {
+  margin-right: 20px;
+}
+
+.new-design .chartlist-loved {
+  display: none;
+}
+
+.new-design .chartlist-checkbox input {
+  width: 14px;
+  height: 14px;
+}

@@ -110,3 +110,8 @@ function deselectAllTracks(section) {
   const checkboxes = section.querySelectorAll('input[name="unscrobble-checkbox"]');
   checkboxes.forEach(checkbox => (checkbox.checked = false));
 }
+
+// Check if the page has the redesigned library
+if (document.querySelectorAll('.chartlist-artist').length > 0) {
+  document.body.classList.add('new-design');
+}

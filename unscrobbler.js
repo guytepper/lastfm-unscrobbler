@@ -30,7 +30,7 @@ scrobbleRows.forEach(row => {
 moreMenu.forEach(menu => {
   const listItem = document.createElement('li');
   const deleteButton = document.createElement('button');
-  deleteButton.className = 'mimic-link dropdown-menu-clickable-item';
+  deleteButton.className = 'mimic-link dropdown-menu-clickable-item delete-selected-scrobbles-btn';
   deleteButton.textContent = 'Delete selected scrobbles';
   deleteButton.onclick = deleteScrobbles;
   listItem.appendChild(deleteButton);

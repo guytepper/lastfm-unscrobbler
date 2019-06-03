@@ -54,7 +54,7 @@ function selectAllHandler(button, section) {
 
 function createSelectAllButton(section) {
   const selectAllBtn = document.createElement('button');
-  selectAllBtn.className = 'btn-secondary btn-sm';
+  selectAllBtn.className = 'btn-secondary btn-sm select-all-btn';
   selectAllBtn.textContent = 'Select All';
   selectAllBtn.onclick = () => selectAllHandler(selectAllBtn, section);
   return selectAllBtn;

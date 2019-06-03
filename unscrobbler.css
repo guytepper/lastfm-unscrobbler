@@ -20,8 +20,11 @@
   padding-right: 26px;
 }
 
+/** New design styles **/
+
 .new-design .chartlist-checkbox {
   margin-right: 20px;
+  margin-bottom: 1px;
 }
 
 .new-design .chartlist-loved {

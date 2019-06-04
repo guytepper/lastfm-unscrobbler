@@ -30,7 +30,7 @@ scrobbleRows.forEach(row => {
 moreMenu.forEach(menu => {
   const listItem = document.createElement('li');
   const deleteButton = document.createElement('button');
-  deleteButton.className = 'mimic-link dropdown-menu-clickable-item';
+  deleteButton.className = 'mimic-link dropdown-menu-clickable-item delete-selected-scrobbles-btn';
   deleteButton.textContent = 'Delete selected scrobbles';
   deleteButton.onclick = deleteScrobbles;
   listItem.appendChild(deleteButton);
@@ -54,7 +54,7 @@ function selectAllHandler(button, section) {
 
 function createSelectAllButton(section) {
   const selectAllBtn = document.createElement('button');
-  selectAllBtn.className = 'btn-secondary btn-sm';
+  selectAllBtn.className = 'btn-secondary btn-sm select-all-btn';
   selectAllBtn.textContent = 'Select All';
   selectAllBtn.onclick = () => selectAllHandler(selectAllBtn, section);
   return selectAllBtn;
@@ -109,4 +109,9 @@ function selectAllTracks(section) {
 function deselectAllTracks(section) {
   const checkboxes = section.querySelectorAll('input[name="unscrobble-checkbox"]');
   checkboxes.forEach(checkbox => (checkbox.checked = false));
+}
+
+// Check if the page has the redesigned library
+if (document.querySelectorAll('.chartlist-artist').length > 0) {
+  document.body.classList.add('new-design');
 }

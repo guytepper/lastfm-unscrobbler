@@ -19,3 +19,47 @@
   align-items: center;
   padding-right: 26px;
 }
+
+/** New design styles **/
+
+.new-design .chartlist-checkbox {
+  margin-right: 20px;
+  margin-bottom: 1px;
+}
+
+.new-design .chartlist-loved {
+  display: none;
+}
+
+.new-design .chartlist-checkbox input {
+  width: 14px;
+  height: 14px;
+}
+
+.new-design .select-all-btn {
+  font-size: 16px;
+}
+
+.new-design .delete-selected-scrobbles-btn {
+  padding-left: 46px;
+  color: #d92323;
+}
+
+.new-design .delete-selected-scrobbles-btn:before {
+  background-image: url(/static/images/icons/delete_222_16@2x.30b7c143db9f.png);
+  background-size: 16px 16px;
+
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: auto;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-position: 0 10px;
+  width: 36px;
+  height: 36px;
+  top: 50%;
+  margin-top: -18px;
+  left: 15px;
+}

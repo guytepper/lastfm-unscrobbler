@@ -4,6 +4,17 @@ const moreMenu = document.querySelectorAll('.chartlist-more-menu');
 const recentTrackSection = document.querySelector('#recent-tracks-section');
 const libraryTracklistSection = document.querySelectorAll('.tracklist-section');
 
+// The last checkbox that was checked/unchecked
+let activeCheckbox;
+
+// Whether the shift key was pressed or not while changing checkbox input
+let shiftKeyPressed;
+function handleShiftKey(event) {
+  shiftKeyPressed = event.shiftKey;
+}
+document.addEventListener('keydown', handleShiftKey, true);
+document.addEventListener('keyup', handleShiftKey, true);
+
 /**
  * Add a checkbox to each scrobble row that'll allow it's selection for deletion.
  * The scrobbles are contained inside table rows, so we'll have to create a new
@@ -21,6 +32,28 @@ scrobbleRows.forEach(row => {
   checkbox.type = 'checkbox';
   checkbox.name = 'unscrobble-checkbox';
   checkboxTableData.appendChild(checkbox);
+
+  // When the checkbox input is changed, check if it was accompanied with the
+  // SHIFT keypress and thereby select range
+  checkbox.addEventListener('input', () => {
+    if (activeCheckbox && shiftKeyPressed) {
+      const checkboxes = [...document.getElementsByName('unscrobble-checkbox')];
+      const activeIndex = checkboxes.indexOf(activeCheckbox);
+      const currentIndex = checkboxes.indexOf(checkbox);
+
+      const checkboxRange = currentIndex > activeIndex ?
+        checkboxes.slice(activeIndex + 1, currentIndex) :
+        checkboxes.slice(currentIndex + 1, activeIndex);
+
+      checkboxRange.map(cb => cb.checked = !cb.checked);
+    }
+
+    // Make this checkbox the active checkbox if shift key is not pressed
+    if (!shiftKeyPressed) {
+      activeCheckbox = checkbox;
+    }
+
+  });
 
   // Insert the checkbox before the track heart icon.
   row.insertBefore(checkboxTableData, loveTableData);

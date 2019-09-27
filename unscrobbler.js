@@ -9,9 +9,11 @@ let activeCheckbox;
 
 // Whether the shift key was pressed or not while changing checkbox input
 let shiftKeyPressed;
+
 function handleShiftKey(event) {
   shiftKeyPressed = event.shiftKey;
 }
+
 document.addEventListener('keydown', handleShiftKey, true);
 document.addEventListener('keyup', handleShiftKey, true);
 

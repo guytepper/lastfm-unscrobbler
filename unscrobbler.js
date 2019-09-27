@@ -41,18 +41,18 @@ scrobbleRows.forEach(row => {
       const activeIndex = checkboxes.indexOf(activeCheckbox);
       const currentIndex = checkboxes.indexOf(checkbox);
 
-      const checkboxRange = currentIndex > activeIndex ?
-        checkboxes.slice(activeIndex + 1, currentIndex) :
-        checkboxes.slice(currentIndex + 1, activeIndex);
+      const checkboxRange =
+        currentIndex > activeIndex
+          ? checkboxes.slice(activeIndex + 1, currentIndex)
+          : checkboxes.slice(currentIndex + 1, activeIndex);
 
-      checkboxRange.map(cb => cb.checked = !cb.checked);
+      checkboxRange.map(cb => (cb.checked = !cb.checked));
     }
 
     // Make this checkbox the active checkbox if shift key is not pressed
     if (!shiftKeyPressed) {
       activeCheckbox = checkbox;
     }
-
   });
 
   // Insert the checkbox before the track heart icon.

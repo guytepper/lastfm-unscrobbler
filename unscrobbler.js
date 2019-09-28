@@ -45,10 +45,10 @@ scrobbleRows.forEach(row => {
 
       const checkboxRange =
         currentIndex > activeIndex
-          ? checkboxes.slice(activeIndex + 1, currentIndex)
-          : checkboxes.slice(currentIndex + 1, activeIndex);
+          ? checkboxes.slice(activeIndex, currentIndex)
+          : checkboxes.slice(currentIndex, activeIndex);
 
-      checkboxRange.map(cb => (cb.checked = !cb.checked));
+      checkboxRange.map(cb => (cb.checked = activeCheckbox.checked));
     }
 
     // Make this checkbox the active checkbox if shift key is not pressed

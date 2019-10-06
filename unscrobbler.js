@@ -4,8 +4,12 @@ const moreMenu = document.querySelectorAll('.chartlist-more-menu');
 const recentTrackSection = document.querySelector('#recent-tracks-section');
 const libraryTracklistSection = document.querySelectorAll('.tracklist-section');
 
-// The last checkbox that was checked/unchecked
-let activeCheckbox;
+// The first checkbox that was checked/unchecked when Shift was pressed
+let firstCheckbox;
+// The latest range select
+let previousRange = [];
+// Value that firstCheckbox initially had
+let resetValue;
 
 // Whether the shift key was pressed or not while changing checkbox input
 let shiftKeyPressed;
@@ -38,22 +42,26 @@ scrobbleRows.forEach(row => {
   // When the checkbox input is changed, check if it was accompanied with the
   // SHIFT keypress and thereby select range
   checkbox.addEventListener('input', () => {
-    if (activeCheckbox && shiftKeyPressed) {
+    if (firstCheckbox && shiftKeyPressed) {
       const checkboxes = [...document.getElementsByName('unscrobble-checkbox')];
-      const activeIndex = checkboxes.indexOf(activeCheckbox);
+      const firstIndex = checkboxes.indexOf(firstCheckbox);
       const currentIndex = checkboxes.indexOf(checkbox);
 
-      const checkboxRange =
-        currentIndex > activeIndex
-          ? checkboxes.slice(activeIndex, currentIndex)
-          : checkboxes.slice(currentIndex, activeIndex);
+      const newRange =
+        currentIndex > firstIndex
+          ? checkboxes.slice(firstIndex, currentIndex + 1)
+          : checkboxes.slice(currentIndex, firstIndex + 1);
 
-      checkboxRange.map(cb => (cb.checked = activeCheckbox.checked));
+      previousRange.map(cb => (cb.checked = resetValue));
+      newRange.map(cb => (cb.checked = !resetValue));
+
+      previousRange = newRange;
     }
-
-    // Make this checkbox the active checkbox if shift key is not pressed
-    if (!shiftKeyPressed) {
-      activeCheckbox = checkbox;
+    // (Re)Initiate values
+    else {
+      firstCheckbox = checkbox;
+      resetValue = !checkbox.checked;
+      previousRange = [];
     }
   });
 

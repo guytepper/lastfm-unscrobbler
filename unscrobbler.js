@@ -4,11 +4,11 @@ const moreMenu = document.querySelectorAll('.chartlist-more-menu');
 const recentTrackSection = document.querySelector('#recent-tracks-section');
 const libraryTracklistSection = document.querySelectorAll('.tracklist-section');
 
-// The first checkbox that was checked/unchecked when Shift was pressed
-let firstCheckbox;
-// The latest range select
-let previousRange = [];
-// Value that firstCheckbox initially had
+// Where the range selection should start
+let startIndex;
+// Where the range selection should end
+let endIndex;
+// Value that firstIndex initially had
 let resetValue;
 
 // Whether the shift key was pressed or not while changing checkbox input
@@ -42,16 +42,17 @@ scrobbleRows.forEach(row => {
   // When the checkbox input is changed, check if it was accompanied with the
   // SHIFT keypress and thereby select range
   checkbox.addEventListener('input', () => {
-    if (firstCheckbox && shiftKeyPressed) {
-      const checkboxes = [...document.getElementsByName('unscrobble-checkbox')];
-      const firstIndex = checkboxes.indexOf(firstCheckbox);
+    const checkboxes = [...document.getElementsByName('unscrobble-checkbox')];
+
+    if (startIndex && shiftKeyPressed) {
       const currentIndex = checkboxes.indexOf(checkbox);
+      if (currentIndex < startIndex) {
+        startIndex = currentIndex;
+      } else {
+        endIndex = currentIndex;
+      }
 
-      const newRange =
-        currentIndex > firstIndex
-          ? checkboxes.slice(firstIndex, currentIndex + 1)
-          : checkboxes.slice(currentIndex, firstIndex + 1);
-
+      const newRange = checkboxes.slice(startIndex, endIndex + 1);
       previousRange.map(cb => (cb.checked = resetValue));
       newRange.map(cb => (cb.checked = !resetValue));
 
@@ -59,7 +60,7 @@ scrobbleRows.forEach(row => {
     }
     // (Re)Initiate values
     else {
-      firstCheckbox = checkbox;
+      startIndex = endIndex = checkboxes.indexOf(checkbox);
       resetValue = !checkbox.checked;
       previousRange = [];
     }

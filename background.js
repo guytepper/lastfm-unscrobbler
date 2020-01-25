@@ -18,3 +18,8 @@ chrome.pageAction.onClicked.addListener(() => {
   chrome.tabs.executeScript(null, { file: 'unscrobbler.js' });
   chrome.tabs.insertCSS(null, { file: 'unscrobbler.css' });
 });
+
+browser.browserAction.onClicked.addListener(() => {
+  chrome.tabs.executeScript(null, { file: 'unscrobbler.js' });
+  chrome.tabs.insertCSS(null, { file: 'unscrobbler.css' });
+});

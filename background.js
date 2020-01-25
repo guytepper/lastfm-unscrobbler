@@ -14,12 +14,10 @@ chrome.runtime.onInstalled.addListener(() => {
   });
 });
 
-chrome.pageAction.onClicked.addListener(() => {
+const onClickAction = () => {
   chrome.tabs.executeScript(null, { file: 'unscrobbler.js' });
   chrome.tabs.insertCSS(null, { file: 'unscrobbler.css' });
-});
+};
 
-browser.browserAction.onClicked.addListener(() => {
-  chrome.tabs.executeScript(null, { file: 'unscrobbler.js' });
-  chrome.tabs.insertCSS(null, { file: 'unscrobbler.css' });
-});
+chrome.pageAction.onClicked.addListener(onClickAction);
+browser.browserAction.onClicked.addListener(onClickAction);

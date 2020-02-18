@@ -63,7 +63,7 @@ scrobbleRows.forEach(row => {
     // (Re)Initiate values
     else {
       startIndex = endIndex = checkboxes.indexOf(checkbox);
-      resetValue = !checkbox.checked;
+      isStartSelected = !checkbox.checked;
       previousRange = [];
     }
   });

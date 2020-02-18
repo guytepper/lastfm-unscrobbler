@@ -8,7 +8,7 @@ const libraryTracklistSection = document.querySelectorAll('.tracklist-section');
 let startIndex;
 // Where the range selection should end
 let endIndex;
-// Value that firstIndex initially had
+// Value that startIndex initially had
 let resetValue;
 
 // Whether the shift key was pressed or not while changing checkbox input

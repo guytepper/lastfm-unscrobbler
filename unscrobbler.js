@@ -4,6 +4,23 @@ const moreMenu = document.querySelectorAll('.chartlist-more-menu');
 const recentTrackSection = document.querySelector('#recent-tracks-section');
 const libraryTracklistSection = document.querySelectorAll('.tracklist-section');
 
+// Where the range selection should start
+let startIndex;
+// Where the range selection should end
+let endIndex;
+// Value that firstIndex initially had
+let resetValue;
+
+// Whether the shift key was pressed or not while changing checkbox input
+let shiftKeyPressed;
+
+function handleShiftKey(event) {
+  shiftKeyPressed = event.shiftKey;
+}
+
+document.addEventListener('keydown', handleShiftKey, true);
+document.addEventListener('keyup', handleShiftKey, true);
+
 /**
  * Add a checkbox to each scrobble row that'll allow it's selection for deletion.
  * The scrobbles are contained inside table rows, so we'll have to create a new
@@ -21,6 +38,33 @@ scrobbleRows.forEach(row => {
   checkbox.type = 'checkbox';
   checkbox.name = 'unscrobble-checkbox';
   checkboxTableData.appendChild(checkbox);
+
+  // When the checkbox input is changed, check if it was accompanied with the
+  // SHIFT keypress and thereby select range
+  checkbox.addEventListener('input', () => {
+    const checkboxes = [...document.getElementsByName('unscrobble-checkbox')];
+
+    if (startIndex && shiftKeyPressed) {
+      const currentIndex = checkboxes.indexOf(checkbox);
+      if (currentIndex < startIndex) {
+        startIndex = currentIndex;
+      } else {
+        endIndex = currentIndex;
+      }
+
+      const newRange = checkboxes.slice(startIndex, endIndex + 1);
+      previousRange.map(cb => (cb.checked = resetValue));
+      newRange.map(cb => (cb.checked = !resetValue));
+
+      previousRange = newRange;
+    }
+    // (Re)Initiate values
+    else {
+      startIndex = endIndex = checkboxes.indexOf(checkbox);
+      resetValue = !checkbox.checked;
+      previousRange = [];
+    }
+  });
 
   // Insert the checkbox before the track heart icon.
   row.insertBefore(checkboxTableData, loveTableData);

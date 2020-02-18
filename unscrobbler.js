@@ -44,7 +44,7 @@ scrobbleRows.forEach(row => {
   checkbox.addEventListener('input', () => {
     const checkboxes = [...document.getElementsByName('unscrobble-checkbox')];
 
-    if (startIndex && shiftKeyPressed) {
+    if (shiftKeyPressed) {
       const currentIndex = checkboxes.indexOf(checkbox);
       if (currentIndex < startIndex) {
         startIndex = currentIndex;

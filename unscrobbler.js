@@ -8,9 +8,10 @@ const libraryTracklistSection = document.querySelectorAll('.tracklist-section');
 let startIndex;
 // Where the range selection should end
 let endIndex;
-
 // Whether the startIndex has been selected / deselected
 let isStartSelected;
+// Keeps the previous range of selected checkboxes
+let previousRange = [];
 // Whether the shift key was pressed or not while changing checkbox input
 let shiftKeyPressed;
 

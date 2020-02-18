@@ -54,7 +54,8 @@ scrobbleRows.forEach(row => {
       }
 
       const newRange = checkboxes.slice(startIndex, endIndex + 1);
-
+      // Decides whethere the checkboxes should be selected / deselected,
+      // using the value of the first selected checkbox.
       previousRange.map(cb => (cb.checked = isStartSelected));
       newRange.map(cb => (cb.checked = !isStartSelected));
       previousRange = newRange;

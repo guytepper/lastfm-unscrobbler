@@ -8,9 +8,9 @@ const libraryTracklistSection = document.querySelectorAll('.tracklist-section');
 let startIndex;
 // Where the range selection should end
 let endIndex;
-// Value that startIndex initially had
-let resetValue;
 
+// Whether the startIndex has been selected / deselected
+let isStartSelected;
 // Whether the shift key was pressed or not while changing checkbox input
 let shiftKeyPressed;
 
@@ -53,9 +53,9 @@ scrobbleRows.forEach(row => {
       }
 
       const newRange = checkboxes.slice(startIndex, endIndex + 1);
-      previousRange.map(cb => (cb.checked = resetValue));
-      newRange.map(cb => (cb.checked = !resetValue));
 
+      previousRange.map(cb => (cb.checked = isStartSelected));
+      newRange.map(cb => (cb.checked = !isStartSelected));
       previousRange = newRange;
     }
     // (Re)Initiate values

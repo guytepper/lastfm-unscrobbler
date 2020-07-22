@@ -46,7 +46,7 @@
 }
 
 .new-design .delete-selected-scrobbles-btn:before {
-  background-image: url(https://www.last.fm/static/images/icons/delete_d92323_16.1f52bbebe2ff.png);
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgBAMAAACBVGfHAAAABGdBTUEAALGPC/xhBQAAABhQTFRFAAAA3CYm3CMj3CMj2SYm2iQk2iMj2SMjpWhQzAAAAAd0Uk5TAElQV1jj/LANKDwAAACLSURBVCjPrZExDoAgDEVN4AoeQedOzk7suriLCSeQXt/Y3xqQUbvQfl5L8+m6X6JfLRsWObY8o/bphMAHhMAQRgbiE+8iuAQkcCZDb8Qna9U0sA1HXgBASkCQEhCkAm6kAlqhaXkP1WfpESYsFq12tjoVgPTFB4iqkxlEerGrhbG2cLNhTk1uvuFzXPk0NmTqPYIDAAAAAElFTkSuQmCC');
   background-size: 16px 16px;
 
   content: '';

@@ -70,6 +70,13 @@ scrobbleRows.forEach(row => {
 
   // Insert the checkbox before the track heart icon.
   row.insertBefore(checkboxTableData, loveTableData);
+
+  // Add checkbox click trigger on row click event.
+  row.addEventListener('click', (event) => {
+    if (['TD', 'TR'].includes(event.target.tagName)) {
+      checkbox.click();
+    }
+  });
 });
 
 // Add a 'Delete selected scrobbles' button to each scrobble menu.

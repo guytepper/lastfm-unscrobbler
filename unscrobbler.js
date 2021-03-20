@@ -71,8 +71,9 @@ scrobbleRows.forEach(row => {
   // Insert the checkbox before the track heart icon.
   row.insertBefore(checkboxTableData, loveTableData);
 
-  row.addEventListener('click', (e) => {
-    if (['TD', 'TR'].includes(e.target.tagName)) {
+  // Add checkbox click trigger on row click event.
+  row.addEventListener('click', (event) => {
+    if (['TD', 'TR'].includes(event.target.tagName)) {
       checkbox.click();
     }
   });

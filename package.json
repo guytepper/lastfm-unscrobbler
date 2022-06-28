@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "start:firefox": "web-ext run --source-dir ./",
+    "start:firefoxdev": "web-ext run --firefox=firefoxdeveloperedition --source-dir ./"
+  }
+}

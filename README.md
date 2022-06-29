@@ -17,5 +17,6 @@ The extension is available to install for [**Chrome**](https://chrome.google.com
 5. Push your work back up to your fork.
 6. Submit a Pull request 🕺
 
-**Tip:** It's recommended to use [`web-ext`](https://github.com/mozilla/web-ext) for development. After installing `web-ext` globally on your machine, you can run `npm run chrome` or `npm run firefox`, and have the extension auto reloaded while developing .
+**Tip:** It's recommended to use [`web-ext`](https://github.com/mozilla/web-ext) for development. After installing `web-ext` globally on your machine, you can run `npm run chrome` or `npm run firefox`, and have the extension auto reloaded while developing.
+
 **Note:** Please make sure to format your code using [**Prettier**](https://github.com/prettier/prettier)

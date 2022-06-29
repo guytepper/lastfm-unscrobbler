@@ -1,6 +1,7 @@
 {
   "scripts": {
     "start:firefox": "web-ext run --source-dir ./",
-    "start:firefoxdev": "web-ext run --firefox=firefoxdeveloperedition --source-dir ./"
+    "start:firefoxdev": "web-ext run --firefox=firefoxdeveloperedition --source-dir ./",
+    "start:chrome": "web-ext run -t chromium --source-dir ./"
   }
 }

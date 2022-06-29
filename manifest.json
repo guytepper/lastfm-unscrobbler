@@ -1,12 +1,11 @@
 {
   "name": "Last.FM Unscrobbler",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "Delete multiple scrobbles from your Last.FM profile.",
-  "manifest_version": 2,
-  "permissions": ["activeTab", "declarativeContent"],
+  "manifest_version": 3,
+  "permissions": ["activeTab", "declarativeContent", "scripting"],
   "background": {
-    "scripts": ["background.js"],
-    "persistent": false
+    "service_worker": "background.js"
   },
   "icons": {
     "16": "images/icon16.png",
@@ -14,20 +13,12 @@
     "48": "images/icon48.png",
     "128": "images/icon128.png"
   },
-  "page_action": {
+  "action": {
     "browser_style": true,
     "show_matches": ["https://www.last.fm/*"],
     "default_icon": {
-      // Change icons before submitting addon to firefox
       "16": "images/icon16.png",
-      // "19": "images/firefox-icon19.png",
       "32": "images/icon32.png"
-      // "38": "images/firefox-icon38.png"
-    }
-  },
-  "browser_specific_settings": {
-    "gecko": {
-      "id": "lastfm@unscrobbler.com"
     }
   }
 }

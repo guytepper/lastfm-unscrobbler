@@ -176,7 +176,7 @@ function validatePage() {
   const username = document.querySelector('.auth-dropdown-menu-item strong')?.innerText;
   const url = new URL(document.URL);
 
-  if (!username) alert('You are not logged in');
+  if (!username) alert('You are not logged in.\nPlease log in to use Last.FM Unscrobbler.');
   else if (url.pathname.endsWith(username) || url.pathname.endsWith(`${username}/library`)) unscrobbler();
   else alert('Last.FM Unscrobbler works only on:\n· Your profile page\n· Your library scrobbles page');
 }

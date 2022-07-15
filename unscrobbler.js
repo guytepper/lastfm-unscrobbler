@@ -177,8 +177,8 @@ function validatePage() {
   const url = new URL(document.URL);
 
   if (!username) alert('You are not logged in.\nPlease log in to use Last.FM Unscrobbler.');
-  else if (url.pathname.endsWith(username) || url.pathname.endsWith(`${username}/library`)) unscrobbler();
-  else alert('Last.FM Unscrobbler works only on:\n· Your profile page\n· Your library scrobbles page');
+  else if (url.pathname.endsWith(username) || url.pathname.endsWith(`${username}/library`) || (url.pathname.includes(`${username}/library`) && url.pathname.split('/').slice(-2)[0] == "_")) unscrobbler();
+  else alert('Last.FM Unscrobbler works only on:\n· Your profile page\n· Your library scrobbles page\n· Your library tracks page');
 }
 
 // Run unscrobbler once per page

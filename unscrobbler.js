@@ -177,7 +177,13 @@ function validatePage() {
   const url = new URL(document.URL);
 
   if (!username) alert('You are not logged in.\nPlease log in to use Last.FM Unscrobbler.');
-  else if (url.pathname.endsWith(username) || url.pathname.endsWith(`${username}/library`) || (url.pathname.includes(`${username}/library`) && url.pathname.split('/').slice(-2)[0] == "_")) unscrobbler();
+  else if (
+    url.pathname.endsWith(username) ||
+    url.pathname.endsWith(`${username}/library`) ||
+    // Covers the library track page
+    // The path includes "username/library" and between the album and the track there is an underscore ("album/_/track").
+    (url.pathname.includes(`${username}/library`) && url.pathname.split('/').slice(-2)[0] == '_')
+  )
   else alert('Last.FM Unscrobbler works only on:\n· Your profile page\n· Your library scrobbles page\n· Your library tracks page');
 }
 

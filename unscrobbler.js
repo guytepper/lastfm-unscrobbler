@@ -184,7 +184,7 @@ function validatePage() {
     // The path includes "username/library" and between the album and the track there is an underscore ("album/_/track").
     (url.pathname.includes(`${username}/library`) && url.pathname.split('/').slice(-2)[0] == '_')
   )
-  else alert('Last.FM Unscrobbler works only on:\n· Your profile page\n· Your library scrobbles page\n· Your library tracks page');
+  else alert('Last.FM Unscrobbler works only on:\n· Your profile page\n· Your library scrobbles page\n· An individual track scrobble history');
 }
 
 // Run unscrobbler once per page

@@ -1,5 +1,6 @@
 .chartlist .chartlist-checkbox {
   width: 10px;
+  padding-top: 4px;
   padding-left: 12px;
 }
 
@@ -40,5 +41,5 @@
 
 .delete-selected-scrobbles-btn {
   font-weight: 600;
-  color: #d92323;
+  color: #d92323 !important;
 }

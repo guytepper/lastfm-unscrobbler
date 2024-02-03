@@ -29,7 +29,7 @@ function unscrobbler() {
    * table data element for each checkbox and append it to the scrobble row.
    */
   scrobbleRows.forEach((row) => {
-    const loveTableData = row.querySelector('.chartlist-loved');
+    const insertTableData = row.querySelector('.chartlist-loved, .chartlist-name');
 
     // Create the checkbox container, which will be appended to the scrobble row.
     const checkboxTableData = document.createElement('td');
@@ -70,7 +70,7 @@ function unscrobbler() {
     });
 
     // Insert the checkbox before the track heart icon.
-    row.insertBefore(checkboxTableData, loveTableData);
+    row.insertBefore(checkboxTableData, insertTableData);
 
     // Add checkbox click trigger on row click event.
     row.addEventListener('click', (event) => {
@@ -163,11 +163,6 @@ function unscrobbler() {
   function deselectAllTracks(section) {
     const checkboxes = section.querySelectorAll('input[name="unscrobble-checkbox"]');
     checkboxes.forEach((checkbox) => (checkbox.checked = false));
-  }
-
-  // Check if the page has the redesigned library
-  if (document.querySelectorAll('.chartlist-artist').length > 0) {
-    document.body.classList.add('new-design');
   }
 }
 

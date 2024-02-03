@@ -1,5 +1,6 @@
 .chartlist .chartlist-checkbox {
   width: 10px;
+  padding-top: 4px;
   padding-left: 12px;
 }
 
@@ -20,27 +21,25 @@
   padding-right: 26px;
 }
 
-/** New design styles **/
+.chartlist-loved {
+  display: none !important;
+}
 
-.new-design .chartlist-checkbox {
+.chartlist-checkbox {
   margin-right: 20px;
   margin-bottom: 1px;
 }
 
-.new-design .chartlist-loved {
-  display: none;
-}
-
-.new-design .chartlist-checkbox input {
+.chartlist-checkbox input {
   width: 14px;
   height: 14px;
 }
 
-.new-design .select-all-btn {
+.select-all-btn {
   font-size: 16px;
 }
 
-.new-design .delete-selected-scrobbles-btn {
+.delete-selected-scrobbles-btn {
   font-weight: 600;
-  color: #d92323;
+  color: #d92323 !important;
 }

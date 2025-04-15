@@ -168,7 +168,7 @@ function unscrobbler() {
 
 // Check if user is logged in and can use the extension on the current page
 function validatePage() {
-  const username = document.querySelector('.auth-dropdown-menu-item strong')?.innerText;
+  const username = document.querySelector('.username')?.innerText;
   const url = new URL(document.URL);
 
   if (!username) alert('You are not logged in.\nPlease log in to use Last.FM Unscrobbler.');

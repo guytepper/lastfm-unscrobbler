@@ -1,6 +1,6 @@
 {
   "name": "Last.FM Unscrobbler",
-  "version": "1.6.3",
+  "version": "1.6.4",
   "description": "Delete multiple scrobbles from your Last.FM profile.",
   "manifest_version": 3,
   "permissions": ["activeTab", "declarativeContent", "scripting"],

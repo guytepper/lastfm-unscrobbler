@@ -8,7 +8,7 @@ chrome.runtime.onInstalled.addListener(() => {
             pageUrl: { hostEquals: 'www.last.fm' }
           })
         ],
-        actions: [new chrome.declarativeContent.ShowPageAction()]
+        actions: [new chrome.declarativeContent.ShowAction()]
       }
     ]);
   });
